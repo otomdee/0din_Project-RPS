@@ -26,40 +26,45 @@ function getUserChoice() {
     }
 }
 
+let comp;
+let usr; 
+
 function playRound() {
     const computerChoice = getComputerChoice();
     const humanChoice = getUserChoice();
+    comp = computerChoice;
+    usr = humanChoice;
 
     if (computerChoice == "Rock") {
-        if humanChoice == "Rock" {
+        if (humanChoice == "Rock") {
             return ("draw")
         }
         else if (humanChoice == "Paper") {
-            return("loss")
+            return("Win")
         }
         else {
-            return ("win")
+            return ("lose")
         }
     }
 
-    if (computerChoice == "Paper") {
-        if humanChoice == "Rock" {
-            return ("win")
+    else if (computerChoice == "Paper") {
+        if (humanChoice == "Rock") {
+            return ("lose")
         }
         else if (humanChoice == "Paper") {
             return("draw")
         }
         else {
-            return ("loss")
+            return ("Win")
         }
     }
 
-    if (computerChoice == "Scissors") {
-        if humanChoice == "Rock" {
-            return ("loss")
+    else if (computerChoice == "Scissors") {
+        if (humanChoice == "Rock") {
+            return ("Win")
         }
         else if (humanChoice == "Paper") {
-            return("win")
+            return("lose")
         }
         else {
             return ("draw")
@@ -67,3 +72,21 @@ function playRound() {
     }
 
 }
+
+
+function consoleOutput() {
+    let ans = playRound();
+    if (ans == "Win") {
+        ++userScore;
+        return("You Win! " + usr + " beats " + comp)
+    }
+    else if (ans == "lose") {
+        ++computerScore
+        return("You lose! " + comp + " beats " + usr)   
+    }
+    else if (ans == "draw") {
+        return("Draw. " + usr + " draws " + comp)
+    }
+}
+
+console.log(consoleOutput() + "\n" + "Your score : " + userScore + "\n" + "computer score: " + computerScore);
