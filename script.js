@@ -18,7 +18,12 @@ function playGame() {
     }
 
     function getUserChoice() {
-        let choice = prompt("Play: ");
+        let choice1 = prompt("Play: ");
+        choice1 = choice1.toLowerCase();
+        let firstLetter = choice1.charAt(0);
+        firstLetter = firstLetter.toUpperCase();
+        choice = firstLetter + choice1.slice(1);
+
         if (choice == "Rock" || choice == "Paper" || choice == "Scissors") {
             return(choice)
         }
