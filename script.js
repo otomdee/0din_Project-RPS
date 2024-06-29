@@ -12,3 +12,14 @@ function getComputerChoice() {
     }
 }
 
+function getUserChoice() {
+    let choice = prompt("Play: ");
+    if (choice == "Rock" || choice == "Paper" || choice == "Scissors") {
+        return(choice)
+    }
+    else {
+        return ("10");
+    }
+}
+
+console.log(getUserChoice());
