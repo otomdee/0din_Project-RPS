@@ -1,104 +1,71 @@
+let container = document.querySelector(".container");
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
 
-function playGame() {
-    computerScore = 0;
-    userScore = 0;
-
-    function getComputerChoice() {
-        let choice = Math.floor(Math.random() * 9);
-        let randChoice = choice % 3;
-        if (randChoice == 0) {
-            return("Rock")
-        }
-        else if (randChoice == 1) {
-            return("Paper")
-        }
-        else {
-            return("Scissors")
-        }
+function getComputerChoice() {
+    let choice = Math.floor(Math.random() * 9);
+    let randChoice = choice % 3;
+    if (randChoice == 0) {
+        return("Rock")
     }
-
-    function getUserChoice() {
-        let choice1 = prompt("Play: ");
-        choice1 = choice1.toLowerCase();
-        let firstLetter = choice1.charAt(0);
-        firstLetter = firstLetter.toUpperCase();
-        choice = firstLetter + choice1.slice(1);
-
-        if (choice == "Rock" || choice == "Paper" || choice == "Scissors") {
-            return(choice)
-        }
-        else {
-            return ("10");
-        }
+    else if (randChoice == 1) {
+        return("Paper")
     }
-
-    let comp;
-    let usr; 
-
-    function playRound() {
-        const computerChoice = getComputerChoice();
-        const humanChoice = getUserChoice();
-        comp = computerChoice;
-        usr = humanChoice;
-
-        if (computerChoice == "Rock") {
-            if (humanChoice == "Rock") {
-                return ("draw")
-            }
-            else if (humanChoice == "Paper") {
-                return("Win")
-            }
-            else {
-                return ("lose")
-            }
-        }
-
-        else if (computerChoice == "Paper") {
-            if (humanChoice == "Rock") {
-                return ("lose")
-            }
-            else if (humanChoice == "Paper") {
-                return("draw")
-            }
-            else {
-                return ("Win")
-            }
-        }
-
-        else if (computerChoice == "Scissors") {
-            if (humanChoice == "Rock") {
-                return ("Win")
-            }
-            else if (humanChoice == "Paper") {
-                return("lose")
-            }
-            else {
-                return ("draw")
-            }
-        }
-
-    }
-
-
-    function consoleOutput() {
-        let ans = playRound();
-        if (ans == "Win") {
-            ++userScore;
-            return("You Win! " + usr + " beats " + comp)
-        }
-        else if (ans == "lose") {
-            ++computerScore
-            return("You lose! " + comp + " beats " + usr)   
-        }
-        else if (ans == "draw") {
-            return("Draw. " + usr + " draws " + comp)
-        }
-    }
-
-    for (let i = 0; i < 5; i++) {
-        console.log("Game will start in 4 seconds.");
-        console.log(consoleOutput() + "\n" + "Your score : " + userScore + "\n" + "computer score: " + computerScore);
+    else {
+        return("Scissors")
     }
 }
 
-playGame();
+let choice;
+    //use event delegation on container
+    container.addEventListener("click", (event) => {
+        let target = event.target;
+        if (target == rock) {
+            choice = "Rock";
+        }
+        else if (target == paper) {
+            choice = "Paper";
+        }
+        else if (target == scissors) {
+            choice = "Scissors";
+        }
+
+        let compChoice = getComputerChoice();
+        let outcome;
+            if (compChoice == "Rock") {
+                if (choice == "Rock") {
+                    outcome = "draw";
+                }
+                else if (choice == "Paper") {
+                    outcome = "Win";
+                }
+                else {
+                    outcome = "lose";
+                }
+            }
+            else if (compChoice == "Paper") {
+                if (choice == "Rock") {
+                    outcome = "lose";
+                }
+                else if (choice == "Paper") {
+                    outcome = "draw";
+                }
+                else {
+                    outcome = "Win";
+                }
+            }
+            else if (compChoice == "Scissors") {
+                if (choice == "Rock") {
+                    outcome = "Win";
+                }
+                else if (choice == "Paper") {
+                    outcome = "lose";
+                }
+                else {
+                    outcome = "draw";
+                }
+            }
+
+            results.innerHTML = `Computer played ${compChoice}. You ${outcome}.`;
+    })
