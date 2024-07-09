@@ -1,1 +1,1 @@
-Rock Paper Scissors game in Javascript, played in the console.
+Rock Paper Scissors game in Javascript.
